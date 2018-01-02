@@ -1,0 +1,79 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/public.css">
+
+    <title>XMU Dict</title>
+  </head>
+  <body>
+    <!-- Modal area -->
+    <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <!-- FIXME: .modal-dialog-centered not working -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="authModalTitle">用户登录</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="username" class="col-form-label">用户名：</label>
+                <input type="text" class="form-control" id="username">
+              </div>
+              <div class="form-group">
+                <label for="password" class="col-form-label">密码：</label>
+                <input type="password" class="form-control" id="password"></input>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            <button id="authModalStart" type="button" class="btn btn-primary">开始查询！</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid viewport">
+      <div class="container d-flex align-items-center justify-content-center" style="height: 100%;">
+        <div class="row-fluid px-3 align-self-center" style="width: 100%;">
+          <!-- FIXME: Unknown class -->
+          <h1 class="text-center">
+    				XMU Dict
+    			</h1>
+    			<p class="muted text-center">
+    				感受指尖上的校园生活
+    			</p>
+          <hr class="text-center mb-5" />
+          <button id="buttonGrade" class="btn btn-lg btn-block btn-info" type="button">成绩查询</button>
+          <button id="buttonCard" class="btn btn-lg btn-block btn-info" type="button">卡额查询</button>
+          <button id="buttonElec" class="btn btn-lg btn-block btn-info" type="button">电费查询</button>
+          <button id="buttonExit" class="btn btn-lg btn-block btn-danger" type="button">退出系统</button>
+          <button id="buttonReset" class="btn btn-lg btn-block btn-dark" type="button">清除密码</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="js/class/User.js"></script>
+    <script type="text/javascript" src="js/class/Alert.js"></script>
+    <!-- Main js -->
+    <script type="text/javascript" src="js/index.js"></script>
+  </body>
+</html>
