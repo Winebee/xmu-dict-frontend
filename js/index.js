@@ -120,8 +120,8 @@ XMUDict.renderer = {
       }
       html += `
         <tr>
-          <th colspan="7" scope="row">学期绩点</th>
-          <td>${term.GPA}</td>
+          <th colspan="6" scope="row">学期绩点</th>
+          <td colspan="2">${term.GPA}</td>
         </tr>
       `
     }
