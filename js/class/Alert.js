@@ -6,7 +6,8 @@ class Alert {
     $(this.elem).css({
       'position': 'fixed',
       'z-index': '999',
-      'top': '1em'
+      'top': '1em',
+      'display': 'none'
     }).addClass("container-fluid");
     var _this = this;
     if(timeout) {
@@ -15,12 +16,17 @@ class Alert {
       }, timeout);
     }
     document.body.append(this.elem);
+    $(this.elem).fadeIn(700);
   }
 
   remove() {
     if(this.elem) {
-      this.elem.remove();
-      this.elem = null;
+      $(this.elem).fadeOut(500);
+      let _this = this;
+      setTimeout(function() {
+        _this.elem.remove();
+        _this.elem = null;
+      }, 550);
     }
   }
 
