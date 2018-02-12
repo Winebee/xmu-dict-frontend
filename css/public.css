@@ -23,3 +23,24 @@ body {
   left: 0;
   z-index: 999;
 }
+
+#grade table .form-check-inline {
+  margin-right: inherit;
+}
+
+#grade table .form-check {
+  margin-bottom: inherit;
+}
+
+.cb-gpa {
+  white-space: nowrap;
+}
+
+.cb-gpa input.form-check-input {
+  position: inherit;
+  margin-left: inherit;
+}
+
+.cb-gpa label.form-check-label {
+  padding-left: inherit;
+}

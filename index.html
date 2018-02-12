@@ -33,12 +33,52 @@
               <div class="form-group">
                 <label for="password" class="col-form-label">密码：</label>
                 <input type="password" class="form-control" id="password" autocomplete="current-password">
+                <small class="form-text text-muted">您的密码将只会保存在您所使用的浏览器上，离开前记得清除密码哦！</small>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">算了</button>
             <button id="authModalStart" type="button" class="btn btn-primary">开始查询！</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="elecModal" tabindex="-1" role="dialog" aria-labelledby="elecModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <!-- FIXME: .modal-dialog-centered not working -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="elecModalTitle">用户登录</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="campus">校区</label>
+                <select class="form-control" id="campus">
+                  <option>某校区</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="building">宿舍楼</label>
+                <select class="form-control" id="building">
+                  <option>某宿舍楼</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="roomID">房间号</label>
+                <input type="text" class="form-control" id="roomID" required="required" placeholder="例：0123">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">算了</button>
+            <button id="elecModalStart" type="button" class="btn btn-primary">开始查询！</button>
           </div>
         </div>
       </div>
@@ -59,7 +99,7 @@
                 <p class="muted text-center">
                   感受指尖上的校园生活
                 </p>
-                <button type="button" class="btn btn-outline-primary btn-block">卡余额</button>
+                <button id="buttonCard" type="button" class="btn btn-outline-primary btn-block">卡余额</button>
               </div>
             </div>
           </div>
@@ -72,7 +112,7 @@
                 </h1>
                 <hr class="text-center mb-5" />
                 <button id="buttonGrade" class="btn btn-lg btn-block btn-info" type="button">成绩查询</button>
-                <button id="buttonCard" class="btn btn-lg btn-block btn-info" type="button">卡额查询</button>
+                <!-- <button id="buttonCard" class="btn btn-lg btn-block btn-info" type="button">卡额查询</button> -->
                 <button id="buttonElec" class="btn btn-lg btn-block btn-info" type="button">电费查询</button>
                 <button class="btn btn-lg btn-block btn-info" type="button" onclick="window.open('static.html');">其它网站</button>
                 <button id="buttonExit" class="btn btn-lg btn-block btn-danger" type="button">退出系统</button>
@@ -92,59 +132,256 @@
       </div>
     </div>
 
-    <div class="container-fluid viewport mt-3 mb-3 table-responsive" id="grade" style="display: none;">
-      <button class="btn btn-block btn-info" type="button">返回</button>
-      <table class="table table-striped table-hover table-sm mt-1">
-        <caption></caption>
+    <!-- Grade area -->
+    <div class="container-fluid viewport pt-3 pb-3 table-responsive" id="grade" style="display: none;">
+      <button class="btn btn-block btn-info btn-back" type="button">返回</button>
+      <button class="btn btn-block btn-danger btn-gpa" type="button">完整视图（包含绩点，慎入）</button>
+      <table id="gradeMain" class="table table-striped table-hover table-sm mt-1">
+        <caption>成绩</caption>
         <thead class="thead-dark">
           <tr>
-            <th scope="col">课程名称</th>
-            <th scope="col">学分/学时</th>
+            <th scope="col" style="width: 70%;">课程名称</th>
+            <!-- <th scope="col">学分/学时</th>
             <th scope="col">课程类别</th>
-            <th scope="col">修读性质</th>
+            <th scope="col">修读性质</th> -->
             <th scope="col">成绩</th>
-            <th scope="col">特殊原因</th>
+            <!-- <th scope="col">特殊原因</th>
             <th scope="col">维度（站位）</th>
-            <th scope="col">绩点</th>
+            <th scope="col">绩点</th> -->
+            <!-- <th>
+              <div class="form-check form-check-inline cb-gpa">
+                <input class="form-check-input" type="checkbox" id="gradeAll">
+                <label class="form-check-label" for="gradeAll">全选</label>
+              </div>
+            </th> -->
           </tr>
         </thead>
         <tbody>
           <tr class="">
-            <th colspan="8" scope="row">第一学年</th>
+            <th colspan="2" scope="row">第一学年</th>
+            <!-- <th>
+              <div class="form-check form-check-inline cb-gpa">
+                <input class="form-check-input" type="checkbox" id="grade_0">
+                <label class="form-check-label" for="grade_0">全选</label>
+              </div>
+            </th> -->
           </tr>
           <tr>
             <th scope="row">语文</th>
-            <td>1.0</td>
+            <!-- <td>1.0</td>
             <td>？？？？</td>
-            <td>必修</td>
+            <td>必修</td> -->
             <td>80</td>
-            <td></td>
+            <!-- <td></td>
             <td>0%</td>
-            <td>3.7</td>
+            <td>3.7</td> -->
+            <!-- <td>
+              <div class="form-check form-check-inline cb-gpa">
+                <input class="form-check-input position-static" type="checkbox" id="grade_0_0">
+              </div>
+            </td> -->
           </tr>
           <tr>
             <th scope="row">语文</th>
-            <td>1.0</td>
+            <!-- <td>1.0</td>
             <td>？？？？</td>
-            <td>必修</td>
+            <td>必修</td> -->
             <td>80</td>
-            <td></td>
+            <!-- <td></td>
             <td>0%</td>
-            <td>3.7</td>
+            <td>3.7</td> -->
+            <!-- <td>
+              <div class="form-check form-check-inline cb-gpa">
+                <input class="form-check-input position-static" type="checkbox" id="grade_0_1">
+              </div>
+            </td> -->
           </tr>
           <tr>
             <th scope="row">语文</th>
-            <td>1.0</td>
+            <!-- <td>1.0</td>
             <td>？？？？</td>
-            <td>必修</td>
+            <td>必修</td> -->
             <td>80</td>
-            <td></td>
+            <!-- <td></td>
             <td>0%</td>
+            <td>3.7</td> -->
+            <!-- <td>
+              <div class="form-check form-check-inline cb-gpa">
+                <input class="form-check-input position-static" type="checkbox" id="grade_0_2">
+              </div>
+            </td> -->
+          </tr>
+          <!-- <tr>
+            <th colspan="1" scope="row">学期绩点</th>
             <td>3.7</td>
+          </tr> -->
+        </tbody>
+      </table>
+      <table id="gradeFull" class="table table-striped table-hover table-sm mt-1" style="display: none;">
+          <caption>总绩点：4.0</caption>
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" style="width: 40%;">课程名称</th>
+              <th scope="col">学分/学时</th>
+              <th scope="col">课程类别</th>
+              <th scope="col">修读性质</th>
+              <th scope="col">成绩</th>
+              <th scope="col">特殊原因</th>
+              <th scope="col">维度（站位）</th>
+              <th scope="col">绩点</th>
+              <th>
+                <div class="form-check form-check-inline cb-gpa">
+                  <input class="form-check-input" type="checkbox" id="gradeAll">
+                  <label class="form-check-label" for="gradeAll">全选</label>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="">
+              <th colspan="8" scope="row">第一学年</th>
+              <th>
+                <div class="form-check form-check-inline cb-gpa">
+                  <input class="form-check-input" type="checkbox" id="grade_0">
+                  <label class="form-check-label" for="grade_0">全选</label>
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <th scope="row">语文</th>
+              <td>1.0</td>
+              <td>？？？？</td>
+              <td>必修</td>
+              <td>80</td>
+              <td></td>
+              <td>0%</td>
+              <td>3.7</td>
+              <td>
+                <div class="form-check form-check-inline cb-gpa">
+                  <input class="form-check-input position-static" type="checkbox" id="grade_0_0">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">语文</th>
+              <td>1.0</td>
+              <td>？？？？</td>
+              <td>必修</td>
+              <td>80</td>
+              <td></td>
+              <td>0%</td>
+              <td>3.7</td>
+              <td>
+                <div class="form-check form-check-inline cb-gpa">
+                  <input class="form-check-input position-static" type="checkbox" id="grade_0_1">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">语文</th>
+              <td>1.0</td>
+              <td>？？？？</td>
+              <td>必修</td>
+              <td>80</td>
+              <td></td>
+              <td>0%</td>
+              <td>3.7</td>
+              <td>
+                <div class="form-check form-check-inline cb-gpa">
+                  <input class="form-check-input position-static" type="checkbox" id="grade_0_2">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="7" scope="row">学期绩点</th>
+              <td colspan="2">3.7</td>
+            </tr>
+          </tbody>
+        </table>
+      <button class="btn btn-block btn-danger btn-gpa" type="button">完整视图（包含绩点，慎入）</button>
+      <button class="btn btn-block btn-info btn-back" type="button">返回</button>
+    </div>
+
+    <!-- Elec area -->
+    <div class="container-fluid viewport pt-3 pb-3 table-responsive" id="elec" style="display: none;">
+      <button class="btn btn-block btn-info" type="button">返回</button>
+      <table class="table table-striped table-hover table-sm mt-1">
+        <caption>缴费明细</caption>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">房间编号</th>
+            <th scope="col">时间</th>
+            <th scope="col">账号</th>
+            <th scope="col">房间名称</th>
+            <th scope="col">金额</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">01010110</th>
+            <td>2018-2-2 15:05:27</td>
+            <td>101010</td>
+            <td>1-0110</td>
+            <td>10.00</td>
           </tr>
           <tr>
-            <th colspan="7" scope="row">学期绩点</th>
-            <td>3.7</td>
+            <th scope="row">总计</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>10.00</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-striped table-hover table-sm mt-1">
+        <caption>用电量</caption>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">时间</th>
+            <th scope="col">缴费用量</th>
+            <th scope="col">补助用量</th>
+            <th scope="col">总用量</th>
+            <th scope="col">缴费余额</th>
+            <th scope="col">补助金额</th>
+            <th scope="col">总余额</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">2018-2-6 23:57:03</th>
+            <td>0.24</td>
+            <td></td>
+            <td>0.24</td>
+            <td>22.62</td>
+            <td>0.00</td>
+            <td>22.62</td>
+          </tr>
+          <tr>
+            <th scope="row">2018-2-5 23:56:37</th>
+            <td>0.82</td>
+            <td></td>
+            <td>0.82</td>
+            <td>22.86</td>
+            <td>0.00</td>
+            <td>22.86</td>
+          </tr>
+          <tr>
+            <th scope="row">2018-2-4 23:56:11</th>
+            <td>0.67</td>
+            <td></td>
+            <td>0.67</td>
+            <td>23.68</td>
+            <td>0.00</td>
+            <td>23.68</td>
+          </tr>
+          <tr>
+            <th colspan="1" scope="row">总计</th>
+            <td>6.12</td>
+            <td>0.0</td>
+            <td>6.12</td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
