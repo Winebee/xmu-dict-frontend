@@ -104,7 +104,7 @@ XMUDict.lib.getGPA = function(usersFilter) {
     term.subjects.forEach(function(subject, subjectIndex) {
       // Filters
       if(subject.takingType == '选修' && subject.courseType != '学科或专业方向性课') return;
-      if(subject.grade.includes('合格')) return;
+      if(subject.grade.includes('合格') || subject.grade.includes('免修') || subject.grade.includes('免考')) return;
       if(subject.grade == '') return;
       if(usersFilter && !$(`#grade_${termIndex}_${subjectIndex}`).prop('checked')) return;
 
