@@ -102,7 +102,6 @@ XMUDict.lib.getGPA = function(usersFilter) {
     let termGPASum = 0;
     let termCreditSum = 0;
     term.subjects.forEach(function(subject, subjectIndex) {
-      let grade;
       // Filters
       if(subject.takingType == '选修' && subject.courseType != '学科或专业方向性课') return;
       if(subject.grade.includes('合格')) return;
@@ -491,5 +490,3 @@ XMUDict.lib.ELEC_MAP = {
     }
   }
 };
-
-
