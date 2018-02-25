@@ -18,4 +18,12 @@ class User {
   get password() {
     return localStorage.getItem("password");
   }
+
+  set room(info) {
+    localStorage.setItem("roomInfo", JSON.stringify(info));
+  }
+
+  get room() {
+    return JSON.parse(localStorage.getItem("roomInfo") || "{}");
+  }
 }

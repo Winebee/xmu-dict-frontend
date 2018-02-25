@@ -192,11 +192,19 @@ XMUDict.handlers.card = function() {
 XMUDict.handlers.elec = function(next) {
   console.log('[ elec ] Getting room info.');
   $('#elecModal').modal('show');
+  if(XMUDict.user.room.campus) {
+    XMUDict.room = XMUDict.user.room;
+    $('#campus').val(XMUDict.room.campus || 0);
+    $('#campus').change();
+    $('#building').val(XMUDict.room.building || 0);
+    $('#roomID').val(XMUDict.room.id || '')
+  }
   $('#elecModalStart').unbind('click');
   $('#elecModalStart').one('click', function() {
     XMUDict.room.campus = $('#campus').val();
     XMUDict.room.building = $('#building').val();
     XMUDict.room.id = $('#roomID').val();
+    XMUDict.user.room = XMUDict.room;
     $('#elecModal').modal('hide');
     var now = new Date((new Date).toLocaleDateString());
     $.ajax({
